@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
@@ -93,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LasagnaCross\LasagnaCross.csproj">
-      <Project>{AD35C996-5805-4989-9F9D-92A91A5BFA02}</Project>
+      <Project>{1DA258C1-95D4-420E-9695-6A20CA7B0A0B}</Project>
       <Name>LasagnaCross</Name>
     </ProjectReference>
   </ItemGroup>
