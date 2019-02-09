@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace LasagnaModel
 {
@@ -31,10 +32,11 @@ namespace LasagnaModel
 
     public class Lasagne : List<Lasagna>
     {
+        // realFile = "C:\Users\maurizio\AppData\Local\Packages\8f020c4f-7665-4b52-ac39-f87bf3bbe660_s97xw37f0a6wp\LocalCache\Data\in.csv"
         public Lasagne() { }
         public Lasagne(string nomeFile)
         {
-            var realFile = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), nomeFile );
+            var realFile = Path.Combine(FileSystem.CacheDirectory, nomeFile );
             if (realFile == null || !File.Exists(realFile))
             {
                 using (var fout = File.CreateText(realFile))

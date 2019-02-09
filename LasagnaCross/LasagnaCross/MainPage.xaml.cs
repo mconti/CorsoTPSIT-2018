@@ -21,8 +21,8 @@ namespace LasagnaCross
         {
             try
             {
-                lvDati1.ItemsSource = new LasagnaModel.Lasagne(@"Data\in.csv");
-                lvDati2.ItemsSource = new LasagnaModel.Lasagne(@"Data\in.csv");
+                lvDati1.ItemsSource = new LasagnaModel.Lasagne("in.csv");
+                lvDati2.ItemsSource = new LasagnaModel.Lasagne("in.csv");
             }
             catch (Exception erore)
             {
