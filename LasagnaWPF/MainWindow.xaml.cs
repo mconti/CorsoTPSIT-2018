@@ -24,6 +24,10 @@ namespace LasagnaWPF
         public MainWindow()
         {
             InitializeComponent();
+
+            // Click è una property di Button di tipo Event
+            // l'operatore += agisce su Event aggiungendo reference a metodi da chiamare allo scatenarsi dell'evento (click)
+            // Qui, al premere del pulsante quindi, vengono chiamati in sequenza il metodo Pippo e il metodo Pluto
             btnApri.Click += Pippo;
             btnApri.Click += Pluto;
         }
@@ -35,6 +39,7 @@ namespace LasagnaWPF
 
         private void Pippo(object sender, RoutedEventArgs e)
         {
+            // Primo sistema: usiamo una List<Lasagna>
             List<Lasagna> lasagne = new List<Lasagna>();
 
             StreamReader fin = new StreamReader("in.csv");
@@ -64,6 +69,7 @@ namespace LasagnaWPF
 
         private void BtnApri2_Click(object sender, RoutedEventArgs e)
         {
+            // Secondo sistema: usiamo un Lasagne (che, derivando da List<Lasagna>, "è un" List<Lasagna>)
             List<Lasagna> lasagne = new List<Lasagna>();
 
             StreamReader fin = new StreamReader("in.csv");
@@ -79,6 +85,8 @@ namespace LasagnaWPF
 
         private void BtnApri3_Click(object sender, RoutedEventArgs e)
         {
+            // Terzo sistema(consigliato per aderire al SOC): sfruttiamo il costruttore di Lasagne per spostare al suo interno la logica di apertura file etc...
+            // Essendo soggetto a eccezioni, "chiudiamo" la sua istanziazione all'interno di un  try catch
             try
             {
                 dgDati.ItemsSource = new Lasagne("in.csv");
