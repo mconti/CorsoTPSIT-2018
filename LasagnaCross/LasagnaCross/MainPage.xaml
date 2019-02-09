@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LasagnaCross"
+             x:Class="LasagnaCross.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackLayout Orientation="Vertical">
+            
+            <Button x:Name="btnApri"
+                    Clicked="BtnApri_Clicked"
+                    Text="+"
+                    FontSize="25" 
+                    HeightRequest="100" WidthRequest="100" 
+                    BackgroundColor="BlanchedAlmond" 
+                    TextColor="Red"/>
+
+            <Label Text="lvDati1"></Label>
+            <ListView x:Name="lvDati1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Nome}"/>
+                                <Label Text="{Binding Prezzo}"/>
+                                <Label Text="{Binding Peso}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label Text="lvDati2"></Label>
+            <ListView x:Name="lvDati2">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Nome}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>
