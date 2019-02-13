@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -63,7 +65,7 @@ namespace LasagnaWPF
                 Lasagna l = new Lasagna
                 {
                     Nome = colonne[0],
-                    Peso = peso,
+                    //Peso = peso,
                     Prezzo = prezzo
                 };
 
@@ -101,6 +103,29 @@ namespace LasagnaWPF
             {
                 MessageBox.Show(erore.Message);
             }
+        }
+
+        private async void BtnWebApi_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+
+                    string response = await client.GetStringAsync(
+                                 "https://flr.azurewebsites.net/api/lasagna");
+
+                    var result = JsonConvert.DeserializeObject
+                                 <IEnumerable<Lasagna>>(response);
+
+                    dgDati.ItemsSource = result;
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Ocio!! {err.Message}");
+            }
+
         }
     }
 }
