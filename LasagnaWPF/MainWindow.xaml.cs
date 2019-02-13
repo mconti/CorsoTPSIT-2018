@@ -14,6 +14,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+// Slide per connesione WebApi
+// https://docs.google.com/presentation/d/1YOSatpxjg3obuBWjtmst1metB2TMZkrxeHkMieIYpig/edit#slide=id.g4a074c92ce_0_12
+
+// url della WebApi che leggeremo!!!
+//https://flr.azurewebsites.net/api/lasagna
+
 namespace LasagnaWPF
 {
     /// <summary>
