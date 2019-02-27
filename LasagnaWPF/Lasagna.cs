@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace LasagnaWPF
 {
     public class Lasagna
     {
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Peso { get; set; }
         public double Prezzo { get; set; }
@@ -46,6 +48,15 @@ namespace LasagnaWPF
             }
             else
                 throw new Exception("No No !!! Non si fa!!!");
+        }
+    }
+
+    public class DatabaseLasagne : DbContext
+    {
+        public DbSet<Lasagna> Lasagne { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=LasagneDb.sqlite");
         }
     }
 }

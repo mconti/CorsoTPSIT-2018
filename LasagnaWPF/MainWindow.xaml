@@ -9,6 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -37,8 +38,32 @@
                 Margin="10" Width="100" 
                 FontSize="20" FontWeight="Bold"
                 Content="WebApi" Click="BtnWebApi_Click"/>
-        </StackPanel>
 
-        <DataGrid x:Name="dgDati" Grid.Row="1"></DataGrid>
+            <!--Pulsante che usa sqLite per aggiungere un record-->
+            <Button x:Name="btnInserisciRecordDb" 
+                Margin="10" Width="60" 
+                FontSize="20" FontWeight="Bold"
+                Content="Insert"
+                Click="BtnInserisciRecordDb_Click"    />
+
+            <!--Pulsante che usa sqLite per cancellare un record-->
+            <Button x:Name="btnEliminaRecordDb" 
+                Margin="10" Width="60" 
+                FontSize="20" FontWeight="Bold"
+                Content="Delete"
+                Click="BtnEliminaRecordDb_Click"    />
+
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Text="Nome" VerticalAlignment="Center"></TextBlock>
+            <TextBox x:Name="edtNome" Width="100" Height="30"></TextBox>
+
+            <TextBlock Margin="30,0,0,0"  Text="Peso" VerticalAlignment="Center"></TextBlock>
+            <TextBox x:Name="edtPeso" Width="100" Height="30"></TextBox>
+
+            <TextBlock Margin="30,0,0,0"  Text="Prezzo" VerticalAlignment="Center"></TextBlock>
+            <TextBox x:Name="edtPrezzo" Width="100" Height="30"></TextBox>
+        </StackPanel>
+        <DataGrid x:Name="dgDati" Grid.Row="2"></DataGrid>
     </Grid>
 </Window>

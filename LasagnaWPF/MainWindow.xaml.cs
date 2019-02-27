@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,9 +30,18 @@ namespace LasagnaWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        DatabaseLasagne db = new DatabaseLasagne();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            using (DatabaseLasagne dbContext = new DatabaseLasagne())
+            {
+                dbContext.Database.Migrate();
+            }
+
+            dgDati.ItemsSource = db.Lasagne.ToList();
 
             // Click è una property di Button di tipo Event
             // l'operatore += agisce su Event aggiungendo reference a metodi da chiamare allo scatenarsi dell'evento (click)
@@ -124,6 +134,31 @@ namespace LasagnaWPF
             catch (Exception err)
             {
                 MessageBox.Show($"Ocio!! {err.Message}");
+            }
+        }
+
+        private void BtnInserisciRecordDb_Click(object sender, RoutedEventArgs e)
+        {
+            double.TryParse(edtPrezzo.Text, out double prezzo);
+            Lasagna l = new Lasagna { Nome=edtNome.Text, Peso=edtPeso.Text, Prezzo=prezzo  };
+
+            db.Lasagne.Add(l);
+            db.SaveChanges();
+
+            dgDati.ItemsSource = null;
+            dgDati.ItemsSource = db.Lasagne.ToList();
+        }
+
+        private void BtnEliminaRecordDb_Click(object sender, RoutedEventArgs e)
+        {
+            Lasagna l = dgDati.SelectedItem as Lasagna;
+            if (l != null)
+            {
+                db.Lasagne.Remove(l);
+                db.SaveChanges();
+
+                dgDati.ItemsSource = null;
+                dgDati.ItemsSource = db.Lasagne.ToList();
             }
 
         }
