@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LasagnaWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="TPSIT 2018-19" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="70"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
 
             <!--Pulsante che apre il CSV con l'evento click cablato lato C#-->
             <Button x:Name="btnApri" 
-                Margin="10" Width="100" 
+                Margin="10" Width="90" 
                 FontSize="20" FontWeight="Bold"
                 Content="Apri"/>
 
@@ -41,17 +41,24 @@
 
             <!--Pulsante che usa sqLite per aggiungere un record-->
             <Button x:Name="btnInserisciRecordDb" 
-                Margin="10" Width="60" 
+                Margin="10" Width="70" 
                 FontSize="20" FontWeight="Bold"
                 Content="Insert"
                 Click="BtnInserisciRecordDb_Click"    />
 
             <!--Pulsante che usa sqLite per cancellare un record-->
             <Button x:Name="btnEliminaRecordDb" 
-                Margin="10" Width="60" 
+                Margin="10" Width="70" 
                 FontSize="20" FontWeight="Bold"
                 Content="Delete"
                 Click="BtnEliminaRecordDb_Click"    />
+
+            <!--Pulsante che usa sqLite per cancellare un record-->
+            <Button x:Name="btnGetXML" 
+                Margin="10" Width="90" 
+                FontSize="20" FontWeight="Bold"
+                Content="Get XML"
+                Click="BtnGetXML_Click"    />
 
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">

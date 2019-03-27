@@ -14,7 +14,8 @@ namespace LasagnaWPF.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(nullable: true),
                     Peso = table.Column<string>(nullable: true),
-                    Prezzo = table.Column<double>(nullable: false)
+                    Prezzo = table.Column<double>(nullable: false),
+                    UrlImmagine = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -14,6 +14,8 @@ namespace LasagnaWPF
         public string Nome { get; set; }
         public string Peso { get; set; }
         public double Prezzo { get; set; }
+        public string UrlImmagine { get; set; }
+
         public Lasagna(){}
 
         public Lasagna (string riga)

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LasagnaWPF.Migrations
 {
     [DbContext(typeof(DatabaseLasagne))]
-    [Migration("20190227154240_InitialCreate")]
+    [Migration("20190327153815_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,8 @@ namespace LasagnaWPF.Migrations
                     b.Property<string>("Peso");
 
                     b.Property<double>("Prezzo");
+
+                    b.Property<string>("UrlImmagine");
 
                     b.HasKey("Id");
 

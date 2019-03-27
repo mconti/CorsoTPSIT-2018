@@ -26,6 +26,8 @@ namespace LasagnaWPF.Migrations
 
                     b.Property<double>("Prezzo");
 
+                    b.Property<string>("UrlImmagine");
+
                     b.HasKey("Id");
 
                     b.ToTable("Lasagne");

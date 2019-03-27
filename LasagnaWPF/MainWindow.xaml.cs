@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 // Slide per connesione WebApi
 // https://docs.google.com/presentation/d/1YOSatpxjg3obuBWjtmst1metB2TMZkrxeHkMieIYpig/edit#slide=id.g4a074c92ce_0_12
@@ -159,6 +160,52 @@ namespace LasagnaWPF
 
                 dgDati.ItemsSource = null;
                 dgDati.ItemsSource = db.Lasagne.ToList();
+            }
+
+        }
+        private async void BtnGetXML_Click(object sender, RoutedEventArgs e)
+        {
+            // Scarica XML dalla rete
+            HttpClient clientXML = new HttpClient();
+            var streamXML = await clientXML.GetStreamAsync(@"http://www.piattoforte.it/feed-rss/rss-ricette-giunti.html");
+
+            // Lo trasforma in oggetti Lasagna
+            var tutte = (from Elemento in XElement.Load(streamXML).Element("channel").Elements("item")
+                        select new Lasagna {
+                            Nome = Elemento.Element("title").Value,
+                            UrlImmagine = Elemento.Element("description").Value
+                        }).ToList();
+
+            // Normalizza gli elementi
+            foreach( var l in tutte )
+            {
+                int inizio, fine;
+                inizio = l.UrlImmagine.IndexOf('"') + 1;
+                fine = l.UrlImmagine.IndexOf('"', inizio);
+
+                string s = l.UrlImmagine.Substring(inizio, fine-inizio);
+                l.UrlImmagine = s;
+            }
+
+            // POSTa gli oggetti sulla WEBApi
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    // baseAddress è l'URL della WebAPI
+                    client.BaseAddress = new Uri("https://flr.azurewebsites.net");
+
+                    foreach (var lasagna in tutte)
+                    {
+                        // Per usare PostAsJsonAsync, è necessario includere il pacchetto NuGet Microsoft.AspNet.WebApi.Client
+                        // HTTP POST è il verbo per aggiungere un record (è la 'C' del CRUD)
+                        HttpResponseMessage response = await client.PostAsJsonAsync("/api/lasagna", lasagna);
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Ocio!! {err.Message}");
             }
 
         }
